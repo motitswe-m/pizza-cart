@@ -5,9 +5,143 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfect Cart</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine.js" defer></script>
     <script src="index.js" defer></script>
+    <style>
+        :root {
+            --primary-bg-color: #ff4d4d; /* Red background */
+            --secondary-bg-color: #ffcc00; /* Bright yellow */
+            --text-color: #333; /* Dark text */
+            --button-bg-color: #ff6600; /* Orange */
+            --button-hover-bg-color: #cc5200; /* Darker orange */
+            --pay-button-bg-color: #ff3300; /* Red */
+            --pay-button-hover-bg-color: #cc0000; /* Darker red */
+            --border-color: #ffcc00; /* Bright yellow */
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: var(--primary-bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .shopping-cart {
+            background-color: var(--secondary-bg-color);
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            text-align: center;
+        }
+
+        .shopping-cart h2 {
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .shopping-cart div {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: var(--button-bg-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 5px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--button-hover-bg-color);
+        }
+
+        .pizzas {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Space between the pizza blocks */
+            margin: 20px 0;
+        }
+
+        .pizza {
+            background-color: var(--secondary-bg-color);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: calc(33.333% - 20px); /* Adjusted width to account for gap */
+            box-shadow: 0 4px 8px var(--shadow-color);
+            transition: transform 0.3s;
+        }
+
+        .pizza:hover {
+            transform: translateY(-10px);
+        }
+
+        .pizza h2 {
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .pizza h3 {
+            margin: 10px 0;
+            color: var(--text-color);
+        }
+
+        .pizza img {
+            margin-bottom: 10px;
+            width: 100%; /* Responsive image */
+            max-width: 150px;
+            height: auto;
+        }
+
+        .contact_us {
+            background-color: var(--secondary-bg-color);
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        input[type="number"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+            width: calc(100% - 10px);
+            margin-bottom: 10px;
+        }
+
+        button.pay {
+            background-color: var(--pay-button-bg-color);
+            color: white;
+        }
+
+        button.pay:hover {
+            background-color: var(--pay-button-hover-bg-color);
+        }
+    </style>
 </head>
 
 <body x-data="pizzaCart()">
