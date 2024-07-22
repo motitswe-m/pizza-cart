@@ -31,16 +31,18 @@ function updateTotalCost() {
     cart.small * prices.small +
     cart.medium * prices.medium +
     cart.large * prices.large;
-  document.getElementById("totalCost").innerText = totalCost.toFixed(2);
+  document.querySelector(
+    ".shopping-cart h3 span"
+  ).innerText = `R${totalCost.toFixed(2)}`;
 }
 
-function checkout() {
+function pay() {
   let totalCost =
     cart.small * prices.small +
     cart.medium * prices.medium +
     cart.large * prices.large;
   let paymentAmount = parseFloat(
-    document.getElementById("paymentAmount").value
+    document.querySelector(".payment-section input[type='number']").value
   );
 
   if (paymentAmount >= totalCost) {
@@ -54,7 +56,7 @@ function checkout() {
 }
 
 function displayMessage(message, type) {
-  let messageDiv = document.getElementById("message");
+  let messageDiv = document.querySelector(".message");
   messageDiv.innerText = message;
   messageDiv.className = `message ${type}`;
   messageDiv.style.display = "block";
@@ -64,7 +66,7 @@ function displayMessage(message, type) {
 }
 
 function checkCart() {
-  let checkoutButton = document.querySelector(".button");
+  let checkoutButton = document.querySelector(".payment-section button");
   if (cart.small + cart.medium + cart.large > 0) {
     checkoutButton.style.display = "block";
   } else {
@@ -72,3 +74,30 @@ function checkCart() {
   }
 }
 
+// Event listeners for cart buttons
+document.querySelectorAll(".cart-item button").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const size = event.target
+      .closest(".cart-item")
+      .querySelector("h3")
+      .innerText.toLowerCase();
+    const action = event.target.innerText === "+" ? "add" : "subtract";
+    updateCart(size, action);
+  });
+});
+
+// Event listeners for pizza buttons
+document.querySelectorAll(".pizza .buy").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const size = event.target
+      .closest(".pizza")
+      .querySelector("h2")
+      .innerText.toLowerCase();
+    addToCart(size);
+  });
+});
+
+// Event listener for pay button
+document
+  .querySelector(".payment-section button")
+  .addEventListener("click", pay);
