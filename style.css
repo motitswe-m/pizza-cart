@@ -1,0 +1,106 @@
+body {
+    background-color: #aed9e0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.shop {
+    border: 1px solid #e0e1dd;
+    padding: 1em;
+    margin: 1em;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: 1em;
+    background-color: #b3ffb3;
+}
+
+.sizes {
+    font-size: larger;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 20px 0;
+    padding: 15px;
+}
+
+.pizzas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pizza {
+    border: 1px solid #e0e1dd;
+    padding: 1em;
+    margin: 1em;
+    margin-bottom: 0.5em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffb3b3;
+}
+
+.medium_pizza {
+    background-color: #ffe6b3;
+    flex: 1;
+    min-height: 300px;
+}
+
+.large_pizza {
+    background-color: #ffb3b3;
+    flex: 1;
+    min-height: 300px;
+}
+
+.small_pizza {
+    background-color: #ffb3e6;
+    flex: 1;
+    min-height: 300px;
+}
+
+.contact_us {
+    background-color: #b3ffb3;
+    border: 1px solid #e0e1dd;
+    padding: 1em;
+    margin: 1em;
+    margin-left: 0.5em;
+    border-radius: 1em;
+}
+
+.button {
+    color: white;
+    background-color: #0077b6;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #005691;
+}
+
+.message {
+    display: none;
+    text-align: center;
+    padding: 10px;
+    margin: 1em;
+    border-radius: 1em;
+}
+
+.success {
+    background-color: #b3ffb3;
+}
+
+.error {
+    background-color: #ffb3b3;
+    color: red;
+    text-align: center;
+    padding: 10px;
+    margin: 1em;
+    border-radius: 1em;
+}
