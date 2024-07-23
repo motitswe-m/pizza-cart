@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfect Cart</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine.js" defer></script>
-    <script src="index.js" defer></script>
     <style>
         :root {
             --primary-bg-color: #ff4d4d; /* Red background */
@@ -155,29 +154,29 @@
                     <h3>Small</h3>
                     <button @click="add('small')">+</button>
                     <button @click="remove('small')">-</button>
-                    <span x-text="prices.small"></span>
+                    <span x-text="quantities.small"></span>
                 </div>
                 <div class="cart-item">
                     <h3>Medium</h3>
                     <button @click="add('medium')">+</button>
                     <button @click="remove('medium')">-</button>
-                    <span x-text="prices.medium"></span>
+                    <span x-text="quantities.medium"></span>
                 </div>
                 <div class="cart-item">
                     <h3>Large</h3>
                     <button @click="add('large')">+</button>
                     <button @click="remove('large')">-</button>
-                    <span x-text="prices.large"></span>
+                    <span x-text="quantities.large"></span>
                 </div>
             </div>
-            <h3>Total: <span x-text="totalCost"></span></h3>
+            <h3>Total: R<span x-text="totalCost"></span></h3>
             <p class="message" x-text="message"></p>
-            <div class="payment-section">
+            <div class="payment-section" x-show="totalCost > 0">
                 <label>Payment amount:</label>
                 <input type="number" x-model="payment" />
                 <button class="pay" @click="pay()">Pay</button>
             </div>
-            <h3>Change: <span x-text="change"></span></h3>
+            <h3>Change: R<span x-text="change"></span></h3>
         </div>
 
         <div class="pizzas">
@@ -217,6 +216,58 @@
             Contact us at: (021)-541-1000 | info@perfectpizza.co.za
         </div>
     </div>
+
+    <script>
+        function pizzaCart() {
+            return {
+                prices: {
+                    small: 49.00,
+                    medium: 89.00,
+                    large: 129.00
+                },
+                quantities: {
+                    small: 0,
+                    medium: 0,
+                    large: 0
+                },
+                payment: 0,
+                message: '',
+                get totalCost() {
+                    return (this.quantities.small * this.prices.small +
+                            this.quantities.medium * this.prices.medium +
+                            this.quantities.large * this.prices.large).toFixed(2);
+                },
+                get change() {
+                    let totalCost = parseFloat(this.totalCost);
+                    return (this.payment - totalCost).toFixed(2);
+                },
+                add(size) {
+                    this.quantities[size]++;
+                },
+                remove(size) {
+                    if (this.quantities[size] > 0) {
+                        this.quantities[size]--;
+                    }
+                },
+                pay() {
+                    let totalCost = parseFloat(this.totalCost);
+                    if (this.payment >= totalCost) {
+                        this.message = 'Enjoy your pizzas!';
+                        this.clearCart();
+                    } else {
+                        this.message = 'Sorry - that is not enough money!';
+                    }
+                    setTimeout(() => this.message = '', 3000);
+                },
+                clearCart() {
+                    this.quantities.small = 0;
+                    this.quantities.medium = 0;
+                    this.quantities.large = 0;
+                    this.payment = 0;
+                }
+            };
+        }
+    </script>
 </body>
 
 </html>
